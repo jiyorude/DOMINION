@@ -288,25 +288,3 @@ function fullFilmDeclaration() {
 partSixDivider();
 console.log(convertSecondsToFramesDeclaration());
 fullFilmDeclaration();
-
-/*function runRNG() {
-    introDeclaration();
-    dateAndTimeDeclaration();
-    partOneDivider();
-    runtimeDeclaration();
-    partTwoDivider();
-    mapDeclaration();
-    keyWordDeclaration();
-    partThreeDivider();
-    shotDeclaration();
-    totalMapDeclaration();
-    shotLengthDeclaration();
-    partFourDivider();
-    shotParameterDeclaration();
-    partFiveDivider();
-    depthParameterDeclaration();
-    partSixDivider();
-    fullFilmDeclaration();
-}
-
-runRNG();*/
