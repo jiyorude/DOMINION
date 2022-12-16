@@ -278,7 +278,7 @@ function fullFilmDeclaration() {
     } else if (usedFrames == usableRunTime) {
         console.log ("\nNOTICED (NEARLY) EXACT RUNTIME:\t " + "RUNTIME WAS " + usableRunTime + " FRAMES AND USED FRAMES ARE " + usedFrames);
     } else {
-       console.log ("\nTOO LESS FRAMES:" + "\n" + (usableRunTime - usableRunTime) + " FRAMES");
+       console.log ("\nTOO LESS FRAMES:" + "\n" + (usableRunTime - usedFrames) + " FRAMES");
     }
 
     console.log("\n/////////////// END OF REPORT ///////////////")
