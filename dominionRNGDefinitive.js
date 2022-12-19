@@ -41,7 +41,6 @@ function mapDeclaration() {
     console.log ("TOTAL MAPS: " + amountOfMaps + "\n\n");
 }
 
-
 function makeSyllable() {
     let syllable = "";
     const possibleLetters = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z'];
@@ -70,7 +69,6 @@ function keyWordDeclaration(){
 partTwoDivider();
 mapDeclaration();
 keyWordDeclaration();
-
 
 function partThreeDivider(){
     console.log ("\n#003\tSHOTS\n[DETERMINES THE AMOUNT OF SHOTS PER MAP INCLUDING THEIR DURATION]\n\n");
@@ -106,7 +104,6 @@ function mapCombiner(accumulator, a) {
     return accumulator + a;
 }
 
-
 function totalMapDeclaration() {
     console.log ("\n\nTOTAL SHOTS:\t\t" + totalShotSum +"\n");
 }
@@ -136,7 +133,6 @@ function shotParameterCalculation(min, max) {
    return (Math.floor(Math.random() * (max - min + 1)) + min);
 }
 
-
 function staticShotCalculation() {
     let result = shotParameterCalculation(0,1);
 
@@ -164,7 +160,6 @@ function rollShotCalculation() {
             return ("ROLL:\nYES - START ROLL AT " + shotParameterCalculation(-180, 180) + " AND END AT " + shotParameterCalculation(-180,180) +"\n\n")
     }   
 }
-
 
 function yawShotCalculation() {
     let yawRNG = shotParameterCalculation(0, 2);
@@ -196,7 +191,6 @@ function fovShotCalculation() {
     }
 }
 
-
 function shotParameterDeclaration() {
     console.log("SHOT PARAMETER OVERVIEW\n[BIG stands for coordinates inside of large maps. SMALL stands for coordinates inside of small maps]\n\n");
 
@@ -212,11 +206,9 @@ function shotParameterDeclaration() {
 partFourDivider();
 shotParameterDeclaration();
 
-
 function partFiveDivider(){
     console.log ("\n\n#005\tDEPTH PARAMETERS\n[DETERMINES THE DEPTH OF FIELD PARAMETERS AND ANIMATION FOR EACH SHOT]\n\n");
 }
-
 
 function depthParameterDeclaration(){
 console.log("DEPTH PARAMETER OVERVIEW\n\n")
@@ -240,7 +232,7 @@ let usableRunTime = 0;
 
 function convertSecondsToFramesDeclaration() {
     usableRunTime = totalRunTime * 24;
-    return ( "TOTAL USABLE FRAMES (BASED ON 24FPS):\t" + usableRunTime +"\n\n");
+    console.log ( "TOTAL USABLE FRAMES (BASED ON 24FPS):\t" + usableRunTime +"\n\n");
 }
 
 function shotRNG() {
@@ -257,28 +249,37 @@ function shotVersion() {
 }
 
 function fullFilmDeclaration() {
-    let introFrames = 240; // Based on 10 seconds * 24 frames per second
-    let outtroFrames = 120; // Based on 5 seconds * 24 frames per second
+    let introFrames = 240; 
+    let outtroFrames = 120;
     let usedFrames = introFrames + outtroFrames;
 
     console.log("FILM OVERVIEW REPORT\n\n");
     console.log("INTRO \t\tVERSION: N/A\tFRAMES: "+ introFrames)
     console.log("OUTTRO \t\tVERSION: N/A\tFRAMES: "+ outtroFrames + "\n")
 
-    while (usedFrames < usableRunTime) {
+    while (usedFrames <= usableRunTime) {
         usedFrames += frameRNG();
         usedFrames++;
         console.log("SHOT " + shotRNG() + ":\t\t" + "VERSION: " +shotVersion() + "\t" + "TOTAL USED FRAMES: " + usedFrames)
     }
 
     console.log("\nDEFINITIVE FRAME COUNTER:\n" + usedFrames)
+
+    let differenceHigh = usedFrames - usableRunTime;
+    let differenceLow = usableRunTime - usedFrames;
     
     if (usedFrames > usableRunTime) {
-        console.log ("\nTOO MANY FRAMES USED:\n" + (usedFrames - usableRunTime) + " FRAMES");
+        console.log ("\nTOO MANY FRAMES USED:\n" + differenceHigh + " FRAMES\n");
+        console.log ("START AT THE LAST SHOT. MOVING TO THE FRONT, DELETE MAXIMUM OF 5 FRAMES PER SHOT UNTIL QUOTA IS MET")
+
     } else if (usedFrames == usableRunTime) {
         console.log ("\nNOTICED (NEARLY) EXACT RUNTIME:\t " + "RUNTIME WAS " + usableRunTime + " FRAMES AND USED FRAMES ARE " + usedFrames);
+        console.log ("\nNO FRAME MUTATION REQUIRED.")
+
     } else {
-       console.log ("\nTOO LESS FRAMES:" + "\n" + (usableRunTime - usedFrames) + " FRAMES");
+       console.log ("\nTOO LESS FRAMES:" + "\n" + differenceLow + " FRAMES");
+       console.log ("START AT THE LAST SHOT. MOVING TO THE FRONT, ADD MAXIMUM OF 5 FRAMES PER SHOT UNTIL QUOTA IS MET")
+
     }
 
     console.log("\n/////////////// END OF REPORT ///////////////")
@@ -286,5 +287,5 @@ function fullFilmDeclaration() {
 };
 
 partSixDivider();
-console.log(convertSecondsToFramesDeclaration());
+convertSecondsToFramesDeclaration();
 fullFilmDeclaration();
